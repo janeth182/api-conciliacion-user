@@ -72,5 +72,5 @@ public class UserController {
 	public ResponseEntity<User> delete(@PathVariable("id") int id){
 		service.delete(id);
 		return ResponseEntity.ok(null);
-	}
+	}	
 }

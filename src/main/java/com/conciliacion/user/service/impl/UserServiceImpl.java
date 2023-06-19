@@ -7,13 +7,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.conciliacion.user.repository.UserRepository;
+import com.conciliacion.user.service.CogniteService;
 import com.conciliacion.user.service.UserService;
-import com.conciliacion.user.entity.User;
 
+import lombok.extern.slf4j.Slf4j;
+
+import com.conciliacion.user.entity.User;
+import com.conciliacion.user.dto.UserSignUpDTO;
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService  {
 	@Autowired
 	private UserRepository repository;
+	@Autowired
+	private CogniteService cognitoUserService;
 	
 	@Override
 	@Transactional(readOnly = true)
@@ -29,8 +36,18 @@ public class UserServiceImpl implements UserService  {
 	@Transactional
 	public User create(User user) {
 		try {			
+			UserSignUpDTO userSignUpDTO = new UserSignUpDTO();
+			userSignUpDTO.setEmail(user.getEmail());
+			userSignUpDTO.setLastname(user.getLastName());
+			userSignUpDTO.setName(user.getFirstName());
+			userSignUpDTO.setPassword("1234567890S0p0rt3*");
+			
+			String userSub = cognitoUserService.signUp(userSignUpDTO);
+			log.info(userSub);
+			user.setIdUserSub(userSub);
 			return repository.save(user);	
 		} catch (Exception e) {
+			log.info(e.getMessage());
 			return null;
 		}		
 	}

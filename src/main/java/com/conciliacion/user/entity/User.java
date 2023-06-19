@@ -61,6 +61,9 @@ public class User {
     @Column(name = "state", nullable = false)
     private Boolean state = true;
 
+    @Column(name = "id_user_sub", nullable = false)
+    private String idUserSub;
+        
     @Column(name = "created_at", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
 	@CreatedDate

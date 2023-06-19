@@ -1,0 +1,8 @@
+# AWS properties
+aws:
+  access-key: AKIA6KOPDE2BWZJVVRX6
+  secret-key: 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
+  region: us-west-2
+  cognito:    
+    user-pool-id: us-west-2_TPbuJxHyk
+    app-client-id: ctfcuqmh1m5auj0c7an83f3tr
