@@ -10,7 +10,7 @@ public class WebConfig {
 	public FilterRegistrationBean<TokenValidationFilter> tokenValidationFilterRegistration() {
         FilterRegistrationBean<TokenValidationFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(new TokenValidationFilter());
-        registrationBean.addUrlPatterns("/*"); 
+        registrationBean.addUrlPatterns("/*");        
         return registrationBean;
     }
 }
